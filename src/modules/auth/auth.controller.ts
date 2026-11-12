@@ -41,7 +41,7 @@ export async function me(req: Request, res: Response): Promise<void> {
   let csrfToken: unknown = req.cookies?.[CSRF_COOKIE];
   if (!isValidCsrfToken(csrfToken)) {
     csrfToken = createCsrfToken();
-    res.cookie(CSRF_COOKIE, csrfToken, { httpOnly: true, sameSite: 'lax', secure: isProduction, path: '/' });
+    res.cookie(CSRF_COOKIE, csrfToken, { httpOnly: true, sameSite: 'none', secure: isProduction, path: '/' });
   }
   sendSuccess(res, { admin, csrfToken }, 'Profile retrieved successfully');
 }
