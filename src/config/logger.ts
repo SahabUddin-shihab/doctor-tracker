@@ -3,6 +3,7 @@ import { env } from './env.js';
 
 export const logger = pino({
   level: env.NODE_ENV === 'test' ? 'silent' : env.LOG_LEVEL,
+  // Never let credentials or tokens reach the logs.
   redact: {
     paths: [
       'req.headers.cookie',
