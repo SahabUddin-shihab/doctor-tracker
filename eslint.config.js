@@ -1,0 +1,21 @@
+import js from '@eslint/js';
+import tseslint from 'typescript-eslint';
+
+export default tseslint.config(
+  { ignores: ['dist/**', 'node_modules/**', 'coverage/**'] },
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
+  {
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+      '@typescript-eslint/consistent-type-imports': 'error',
+      'no-console': ['error', { allow: ['warn', 'error'] }],
+    },
+  },
+  {
+    // CLI scripts report their result on stdout by design.
+    files: ['src/scripts/**/*.ts'],
+    rules: { 'no-console': 'off' },
+  },
+);
