@@ -11,7 +11,7 @@ const REFRESH_PATH = '/api/v1/auth';
 const base: CookieOptions = {
   httpOnly: true,
   secure: isProduction,
-  sameSite: 'lax',
+  sameSite: 'none',
 };
 
 export function setSessionCookies(
